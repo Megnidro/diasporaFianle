@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Détails de la Juridiction de Rabat</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Détails de la Juridiction de Rabat</h1>
+    <table>
+        <tr>
+            <th colspan="4">Juridiction de Rabat</th>
+        </tr>
+        <tr>
+            <th>Total</th>
+            <th>NPI</th>
+            <th>NOT_NPI</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>{{ juridiction_data.total }}</td>
+            <td>{{ juridiction_data.NPI }}</td>
+            <td>{{ juridiction_data.NOT_NPI }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <th colspan="4">Pays</th>
+        </tr>
+        {% for pays, pays_data in juridiction_data.Pays.items %}
+        <tr>
+            <td colspan="4">{{ pays }}</td>
+        </tr>
+        <tr>
+            <th>Total</th>
+            <th>NPI</th>
+            <th>NOT_NPI</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>{{ pays_data.total }}</td>
+            <td>{{ pays_data.NPI }}</td>
+            <td>{{ pays_data.NOT_NPI }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <th colspan="4">Villes</th>
+        </tr>
+        {% for ville, ville_data in pays_data.Villes.items %}
+        <tr>
+            <td colspan="4">{{ ville }}</td>
+        </tr>
+        <tr>
+            <th>NPI</th>
+            <th>NOT_NPI</th>
+            <th colspan="2"></th>
+        </tr>
+        <tr>
+            <td>{{ ville_data.NPI }}</td>
+            <td>{{ ville_data.NOT_NPI }}</td>
+            <td colspan="2"></td>
+        </tr>
+        {% endfor %}
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for juridiction in juridictions %}
+    <ul class="list-group list-group-flush mg-b-15">
+        <li class="list-group-item">
+            <span class="bg-primary"></span>
+            <span>{{ juridiction.name }}</span>
+            <span class="tx-medium">{{ juridiction.name }}</span>
+        </li>
+    </ul>
+
+    <a class="d-flex align-items-center tx-12" href="#">voir tout <i class="icon ion-android-arrow-forward mg-l-5"></i></a>
+{% endfor %}
+</body>
+</html>

@@ -1,0 +1,311 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Diasporat</title>
+    <!-- Meta -->
+    <meta content="Responsive Bootstrap 4 Dashboard and Admin Template" name="description">
+    <meta content="ThemePixels" name="author">
+<!-- Favicon -->
+    <link href="../assets/img/favicon.png" rel="shortcut icon" type="image/x-icon">
+    <link href="https://fontawesome.com/license/free" rel="stylesheet">
+    <!-- vendor css -->
+
+    <link href="../../static/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../static/assets/css/test.css">
+
+    <!-- template css -->
+
+     <link href="../../static/assets/css/cassie.css" rel="stylesheet">
+
+
+    <link href="../../static/lib/%40fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="../../static/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="../../static/lib/prismjs/themes/prism-tomorrow.css" rel="stylesheet">
+    <link href="../../static/lib/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="../../static/lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet">
+    <link href="../../static/lib/select2/css/select2.min.css" rel="stylesheet">
+
+</head>
+<body>
+<header class="header">
+    <div class="container">
+
+    </div>
+</header>
+<div class="content-page" >
+    <div class="content-body">
+        <div class="row row-sm">
+          <div class="col">
+              <br>
+            <div class="card">
+              <div class="card-body">
+                <div id="example1_wrapper" class="dataTables_wrapper no-footer">
+                  <div class="dataTables_length" id="example1_length">
+                    <label>
+                      <select name="example1_length" aria-controls="example1" class="">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                      </select> items/page
+                    </label>
+                  </div>
+                  <div id="example1_filter" class="dataTables_filter">
+                    <label>
+                      <input type="search" class="" placeholder="Search..." aria-controls="example1">
+                        <button id="exportButton" class="btn btn-primary" aria-controls="example1"> Export</button>
+                    </label>
+                  </div>
+                    {% if data %}
+                    <table id="example1" class="table dataTable no-footer" role="grid" aria-describedby="example1_info">
+                        <thead>
+                            <tr role="row">
+                                <th class="wd-20p sorting " tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="Salary: activate to sort column ascending" aria-sort="descending"
+                                    style="width: 204.783px;">
+                                    ID Consulaire
+                                </th>
+                                <th class="wd-20p sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="Name: activate to sort column ascending" style="width: 204.783px;">
+                                    Nom
+                                </th>
+                                <th class="wd-20p sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="Name: activate to sort column ascending" style="width: 204.783px;">
+                                    Ville de Naissance
+                                </th>
+                                <th class="wd-25p sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="Position: activate to sort column ascending" style="width: 260.978px;">
+                                    Pays de Résidence
+                                </th>
+                                <th class="wd-20p sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="Office: activate to sort column ascending" style="width: 204.783px;">
+                                    Catégorie Pro
+                                </th>
+                                <th class="wd-15p sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="Age: activate to sort column ascending" style="width: 148.587px;">
+                                    Secteur Pro
+                                </th>
+                                <th class="wd-20p sorting " tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="Salary: activate to sort column ascending" aria-sort="descending"
+                                    style="width: 204.783px;">
+                                    Statut d'Emploi
+                                </th>
+                            </tr>
+                        </thead>
+                        {% for item in data %}
+                        <tbody>
+                            <tr role="row" class="odd">
+                                <td>{{ item.idconsulaire }}</td>
+                                <td>{{ item.lastName }}</td>
+                                <td>{{ item.ville_naissance }}</td>
+                                <td>{{ item.pays_residence }}</td>
+                                <td>{{ item.categorie_pro }}</td>
+                                <td>{{ item.secteur_pro }}</td>
+                                <td>{{ item.statut_emploi }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="29">Aucune donnée disponible</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                        <p>Aucune donnée à afficher.</p>
+                    {% endif %}
+
+                    <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+                    <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                        <a class="paginate_button previous disabled" aria-controls="example1" data-dt-idx="0" tabindex="0" id="example1_previous">Previous</a><span>
+                        <a class="paginate_button current" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a>
+                        <a class="paginate_button " aria-controls="example1" data-dt-idx="2" tabindex="0">2</a>
+                        <a class="paginate_button " aria-controls="example1" data-dt-idx="3" tabindex="0">3</a>
+                        <a class="paginate_button " aria-controls="example1" data-dt-idx="4" tabindex="0">4</a>
+                        <a class="paginate_button " aria-controls="example1" data-dt-idx="5" tabindex="0">5</a>
+                        <a class="paginate_button " aria-controls="example1" data-dt-idx="6" tabindex="0">6</a>
+                </span>
+                    <a class="paginate_button next" aria-controls="example1" data-dt-idx="7" tabindex="0" id="example1_next">Next</a>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+              <br>
+            <div class="card">
+              <div class="card-body">
+                  <h2>Concentration des individus par pays</h2>
+                  <canvas id="paysChart"></canvas>
+              </div>
+            </div>
+        </div>
+        <div class="col">
+              <br>
+            <div class="card">
+              <div class="card-body">
+                  <h2>Concentration des individus par ville</h2>
+                  <canvas id="villeChart"></canvas>
+              </div>
+            </div>
+        </div>
+        <div class="col">
+              <br>
+            <div class="card">
+              <div class="card-body">
+                  <h2>Concentration des individus par genre</h2>
+                  <canvas id="genreChart"></canvas>
+              </div>
+            </div>
+        </div>
+        <div class="col">
+              <br>
+            <div class="card">
+              <div class="card-body">
+                  <h2>Concentration des individus par catégorie professionnelle</h2>
+                  <canvas id="categorieProChart"></canvas>
+              </div>
+            </div>
+        </div>
+    </div>
+</div><!----Sidebar----->
+
+
+<script src="../../static/lib/jquery/jquery.min.js"></script>
+<script src="../../static/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../static/lib/feather-icons/feather.min.js"></script>
+<script src="../../static/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="../../static/lib/js-cookie/js.cookie.js"></script>
+<script src="../../static/lib/chart.js/Chart.bundle.min.js"></script>
+<script src="../../static/lib/jquery.flot/jquery.flot.js"></script>
+<script src="../../static/lib/jquery.flot/jquery.flot.stack.js"></script>
+<script src="../../static/lib/jquery.flot/jquery.flot.resize.js"></script>
+<script src="../../static/lib/jquery.flot/jquery.flot.threshold.js"></script>
+<script src="../../static/lib/jqvmap/jquery.vmap.min.js"></script>
+<script src="../../static/lib/jqvmap/maps/jquery.vmap.world.js"></script>
+
+<script src="../../static/assets/js/cassie.js"></script>
+<script src="../../static/assets/js/flot.sampledata.js"></script>
+<script src="../../static/assets/js/vmap.sampledata.js"></script>
+<script src="../../static/assets/js/dashboard-one.js"></script>
+
+
+<script src="../../static/assets/js/cassie.js"></script>
+<script>
+    var paysCounts = {{ pays_counts|safe }};
+    var villeCounts = {{ ville_counts|safe }};
+    var genreCounts = {{ genre_counts|safe }};
+    var categorieProCounts = {{ categorie_pro_counts|safe }};
+
+    var paysLabels = Object.keys(paysCounts);
+    var paysData = Object.values(paysCounts);
+
+    var villeLabels = Object.keys(villeCounts);
+    var villeData = Object.values(villeCounts);
+
+    var genreLabels = Object.keys(genreCounts);
+    var genreData = Object.values(genreCounts);
+    var categorieProLabels = Object.keys(categorieProCounts);
+    var categorieProData = Object.values(categorieProCounts);
+
+
+    var ctxPays = document.getElementById('paysChart').getContext('2d');
+        var paysChart = new Chart(ctxPays, {
+            type: 'bar',
+            data: {
+                labels: paysLabels,
+                datasets: [{
+                    label: 'Nombre d\'individus',
+                    data: paysData,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+    // Créer le graphique pour la concentration par ville
+    var ctxVille = document.getElementById('villeChart').getContext('2d');
+        var villeChart = new Chart(ctxVille, {
+            type: 'bar',
+            data: {
+                labels: villeLabels,
+                datasets: [{
+                    label: 'Nombre d\'individus',
+                    data: villeData,
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Créer le graphique pour la concentration par genre
+    var ctxGenre = document.getElementById('genreChart').getContext('2d');
+        var genreChart = new Chart(ctxGenre, {
+            type: 'bar',
+            data: {
+                labels: genreLabels,
+                datasets: [{
+                    label: 'Nombre d\'individus',
+                    data: genreData,
+                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                    borderColor: 'rgba(255, 159, 64, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Créer le graphique pour la concentration par catégorie professionnelle
+    var ctxCategoriePro = document.getElementById('categorieProChart').getContext('2d');
+        var categorieProChart = new Chart(ctxCategoriePro, {
+            type: 'bar',
+            data: {
+                labels: categorieProLabels,
+                datasets: [{
+                    label: 'Nombre d\'individus',
+                    data: categorieProData,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+</script>
+
+
+
+
+
+</body>

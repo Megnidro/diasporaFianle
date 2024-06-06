@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if data %}
+  <table>
+    <thead> 
+      <tr>
+        <th>ID</th>
+        <th>ID Consulaire</th>
+        <th>Prénom</th>
+        <th>Nom</th>
+        <th>Genre</th>
+        <th>Date de Naissance</th>
+        <th>Ville de Naissance</th>
+        <th>Adresse Actuelle</th>
+        <th>Pays de Résidence</th>
+        <th>Ville de Résidence</th>
+        <th>Nom et Prénom du Père</th>
+        <th>Nom et Prénom de la Mère</th>
+        <th>Email</th>
+        <th>Téléphone</th>
+        <th>Catégorie Pro</th>
+        <th>Secteur Pro</th>
+        <th>Années d'Expérience</th>
+        <th>Niveau d'Éducation</th>
+        <th>Statut d'Emploi</th>
+        <th>LinkedIn</th>
+        <th>Nom ICE</th>
+        <th>Prénom ICE</th>
+        <th>Téléphone ICE</th>
+        <th>Numéro de Demande</th>
+        <th>Statut de la Demande</th>
+        <th>Code Téléphonique</th>
+        <th>Code Téléphonique ICE</th>
+        <th>Date de Délivrance</th>
+        <th>Date d'Expiration</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in data %}
+        <tr>
+          <td>{{ item.id }}</td>
+          <td>{{ item.idconsulaire }}</td>
+          <td>{{ item.firstName }}</td>
+          <td>{{ item.lastName }}</td>
+          <td>{{ item.genre }}</td>
+          <td>{{ item.date_naissance }}</td>
+          <td>{{ item.ville_naissance }}</td>
+          <td>{{ item.adresse_actuelle }}</td>
+          <td>{{ item.pays_residence }}</td>
+          <td>{{ item.ville_residence }}</td>
+          <td>{{ item.nom_prenom_pere }}</td>
+          <td>{{ item.nom_prenom_mere }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.codeTelephonique }}{{ item.tel }}</td>
+          <td>{{ item.categorie_pro }}</td>
+          <td>{{ item.secteur_pro }}</td>
+          <td>{{ item.nb_annee_epx }}</td>
+          <td>{{ item.niveau_education }}</td>
+          <td>{{ item.statut_emploi }}</td>
+          <td>{% if item.linkedin != "NA" %}{{ item.linkedin }}{% else %}Non disponible{% endif %}</td>
+          <td>{{ item.lastNameICE }}</td>
+          <td>{{ item.firstNameICE }}</td>
+          <td>{{ item.codeTelephoniqueICE }}{{ item.telICE }}</td>
+          <td>{{ item.numero_demande }}</td>
+          <td>{{ item.statut_demande }}</td>
+          <td>{{ item.codeTelephonique }}</td>
+          <td>{{ item.codeTelephoniqueICE }}</td>
+          <td>{{ item.date_delivrance }}</td>
+          <td>{{ item.date_expiration }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="29">Aucune donnée disponible</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>Aucune donnée à afficher.</p>
+{% endif %}
+
+</body>
+</html>
