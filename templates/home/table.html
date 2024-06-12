@@ -169,6 +169,42 @@
               </div>
             </div>
         </div>
+        <div class="col">
+              <br>
+            <div class="card">
+              <div class="card-body">
+                  <h2>NPIChart</h2>
+                  <canvas id="NPIChart"></canvas>
+              </div>
+            </div>
+        </div>
+        <div class="col">
+              <br>
+            <div class="card">
+              <div class="card-body">
+                  <h2>top_10_npiChart</h2>
+                  <canvas id="top_10_npiChart"></canvas>
+              </div>
+            </div>
+        </div>
+        <div class="col">
+              <br>
+            <div class="card">
+              <div class="card-body">
+                  <h2>non_npiChart</h2>
+                  <canvas id="non_npiChart"></canvas>
+              </div>
+            </div>
+        </div>
+        <div class="col">
+              <br>
+            <div class="card">
+              <div class="card-body">
+                  <h2>top_10_non_npiChart</h2>
+                  <canvas id="top_10_non_npiChart"></canvas>
+              </div>
+            </div>
+        </div>
     </div>
 </div><!----Sidebar----->
 
@@ -198,6 +234,10 @@
     var villeCounts = {{ ville_counts|safe }};
     var genreCounts = {{ genre_counts|safe }};
     var categorieProCounts = {{ categorie_pro_counts|safe }};
+    var npi_counts = {{ npi_counts|safe }};
+    var non_npi_counts = {{ non_npi_counts|safe }};
+    var top_10_npi = {{ top_10_npi|safe }};
+    var top_10_non_npi = {{ top_10_non_npi|safe }};
 
     var paysLabels = Object.keys(paysCounts);
     var paysData = Object.values(paysCounts);
@@ -207,8 +247,21 @@
 
     var genreLabels = Object.keys(genreCounts);
     var genreData = Object.values(genreCounts);
+
     var categorieProLabels = Object.keys(categorieProCounts);
     var categorieProData = Object.values(categorieProCounts);
+
+    var npiLabels = Object.keys(npi_counts);
+    var npiData = Object.values(npi_counts);
+
+    var non_npiLabels = Object.keys(non_npi_counts);
+    var non_npiData = Object.values(non_npi_counts);
+
+    var top_10_npi_Labels = Object.keys(top_10_npi);
+    var top_10_npi_Data = Object.values(top_10_npi);
+
+    var top_10_non_npi_Labels = Object.keys(top_10_non_npi);
+    var top_10_non_npi_Data = Object.values(top_10_non_npi);
 
 
     var ctxPays = document.getElementById('paysChart').getContext('2d');
@@ -279,7 +332,7 @@
             }
         });
 
-        // Créer le graphique pour la concentration par catégorie professionnelle
+    // Créer le graphique pour la concentration par catégorie professionnelle
     var ctxCategoriePro = document.getElementById('categorieProChart').getContext('2d');
         var categorieProChart = new Chart(ctxCategoriePro, {
             type: 'bar',
@@ -290,6 +343,93 @@
                     data: categorieProData,
                     backgroundColor: 'rgba(54, 162, 235, 0.2)',
                     borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var ctxNPI = document.getElementById('NPIChart').getContext('2d');
+            var NPIChart = new Chart(ctxNPI, {
+                type: 'bar',
+                data: {
+                    labels: npiLabels,
+                    datasets: [{
+                        label: 'Nombre d\'individus',
+                        data: npiData,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+
+        var ctxPays = document.getElementById('top_10_npiChart').getContext('2d');
+        var top_10_npiChart = new Chart(ctxPays, {
+            type: 'bar',
+            data: {
+                labels: top_10_npi_Labels,
+                datasets: [{
+                    label: 'Nombre d\'individus',
+                    data: top_10_npi_Data,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        var ctxnon_npi = document.getElementById('non_npiChart').getContext('2d');
+            var non_npiChart = new Chart(ctxnon_npi, {
+                type: 'bar',
+                data: {
+                    labels: non_npiLabels,
+                    datasets: [{
+                        label: 'Nombre d\'individus',
+                        data: non_npiData,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        var ctxnontop = document.getElementById('top_10_non_npiChart').getContext('2d');
+        var top_10_non_npiChart = new Chart(ctxnontop, {
+            type: 'bar',
+            data: {
+                labels: top_10_non_npi_Labels,
+                datasets: [{
+                    label: 'Nombre d\'individus',
+                    data: top_10_non_npi_Data,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 1
                 }]
             },

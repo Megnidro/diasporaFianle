@@ -2,9 +2,78 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Graphs</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <h1>Top Countries Without NPI</h1>
+    <canvas id="chartWithoutNPI"></canvas>
+    <h1>Top Countries With NPI</h1>
+    <canvas id="chartWithNPI"></canvas>
 
+    <script>
+        // Données pour les graphiques
+        const topCountriesWithoutNPI = {{ top_countries_withoutNPI|safe }};
+        const topCountriesWithNPI = {{ top_countries_withNPI|safe }};
+
+        const labelsWithoutNPI = topCountriesWithoutNPI.map(item => item[0]);
+        const dataWithoutNPI = topCountriesWithoutNPI.map(item => item[1]);
+
+        const labelsWithNPI = topCountriesWithNPI.map(item => item[0]);
+        const dataWithNPI = topCountriesWithNPI.map(item => item[1]);
+
+
+        // Log des labels et des données pour le débogage
+        console.log('Labels Without NPI:', labelsWithoutNPI);
+        console.log('Data Without NPI:', dataWithoutNPI);
+        console.log('Labels With NPI:', labelsWithNPI);
+        console.log('Data With NPI:', dataWithNPI);
+
+        // Configuration du graphique pour les pays sans NPI
+        const ctxWithoutNPI = document.getElementById('chartWithoutNPI').getContext('2d');
+        const chartWithoutNPI = new Chart(ctxWithoutNPI, {
+            type: 'bar',
+            data: {
+                labels: labelsWithoutNPI,
+                datasets: [{
+                    label: 'Nombre de personnes sans NPI',
+                    data: dataWithoutNPI,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Configuration du graphique pour les pays avec NPI
+        const ctxWithNPI = document.getElementById('chartWithNPI').getContext('2d');
+        const chartWithNPI = new Chart(ctxWithNPI, {
+            type: 'bar',
+            data: {
+                labels: labelsWithNPI,
+                datasets: [{
+                    label: 'Nombre de personnes avec NPI',
+                    data: dataWithNPI,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
